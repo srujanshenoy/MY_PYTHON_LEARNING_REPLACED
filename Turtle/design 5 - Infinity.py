@@ -14,4 +14,4 @@ for i in range(150):
         forward(10)
     else:
         forward(5)
-exitonclick() 
+exitonclick()
