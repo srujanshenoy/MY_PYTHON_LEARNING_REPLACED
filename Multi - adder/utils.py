@@ -23,7 +23,6 @@ def sum_list(in_list: list):
     current_index = 0
     for element in in_list:
         if current_index > 0:
-            prev_index = current_index - 1
             current_sum = previous_sum + element
             current_index += 1
             previous_sum = current_sum
@@ -35,7 +34,7 @@ def sum_list(in_list: list):
     return current_sum + in_list[0]
 
 
-def floating_list(inlist:list):
+def floating_list(inlist: list):
     current_index = 0
     outlist = []
     current_number = 0
@@ -43,10 +42,8 @@ def floating_list(inlist:list):
         try:
             current_number = float(char)
         except:
-            print(f"The character at index {inlist[current_index + 1]} is not a number. redo this program.")
-            break
+            continue
 
         outlist.append(current_number)
 
     return outlist
-
