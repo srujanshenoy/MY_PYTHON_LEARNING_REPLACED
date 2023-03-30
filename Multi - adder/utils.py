@@ -20,18 +20,22 @@ def list_entrance_function():
 
 
 def sum_list(in_list: list):
-    current_index = 0
-    for element in in_list:
-        if current_index > 0:
-            current_sum = previous_sum + element
-            current_index += 1
-            previous_sum = current_sum
-        else:
-            previous_sum = 0
-            current_sum = element
-            current_index += 1
+    total = 0
+    for i in in_list:
+        total += i
 
-    return current_sum + in_list[0]
+    # current_index = 0
+    # for element in in_list:
+    #     if current_index > 0:
+    #         current_sum = previous_sum + element
+    #         current_index += 1
+    #         previous_sum = current_sum
+    #     else:
+    #         previous_sum = 0
+    #         current_sum = element
+    #         current_index += 1
+    #
+    # return current_sum + in_list[0]
 
 
 def floating_list(inlist: list):
