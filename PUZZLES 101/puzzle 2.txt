@@ -1,0 +1,9 @@
+make this into ten pieces w/o adding or removing any sticks
+| | | | | | | | | |
+
+Sol:
+  (for ease of diagram, kindly accept ___ and __ and \   and | as one stick.)
+                                                      \      |
+  ___  ___
+   |   |__  |\ |
+   |   |__  | \|

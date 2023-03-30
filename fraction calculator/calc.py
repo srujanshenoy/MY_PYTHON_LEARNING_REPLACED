@@ -41,19 +41,14 @@ def compute_lcm(x, y):
 
 
 def compute_hcf(x, y):
-
     if x > y:
         smaller = y
     else:
         smaller = x
-    for i in range(1, smaller+1):
+    for i in range(1, smaller + 1):
         if (x % i == 0) and (y % i == 0):
             hcf = i
     return hcf
-
-
-
-
 
 
 def multiply(N1, D1, N2, D2):
@@ -61,7 +56,8 @@ def multiply(N1, D1, N2, D2):
     RD = D1 * D2
     if RN > RD:
         choice = input(
-            "What form do you want your answer in? \n mixed fraction or improper fraction? \n type your answer to this question as specified in the question itself")
+            "What form do you want your answer in? \n mixed fraction or improper fraction? \n type your answer to "
+            "this question as specified in the question itself")
         if choice.lower() == "mixed fraction":
             Remainder = RN % RD
             Quotient = RN / RD
@@ -81,10 +77,6 @@ def multiply(N1, D1, N2, D2):
 
     else:
         print("1")
-
-
-
-
 
 
 def divide(N1, D1, N2, D2):
@@ -144,6 +136,7 @@ def add(N1, D1, N2, D2):
     else:
         print("1")
 
+
 def subtract(N1, D1, N2, D2):
     LCM = compute_lcm(D1, D2)
 
@@ -171,11 +164,10 @@ def subtract(N1, D1, N2, D2):
             two_element_list_to_f_string_and_print(RESULT_FRACTION_LIST)
 
     elif RN < RD:
-       print(simplify(RN, RD))
+        print(simplify(RN, RD))
 
     else:
-       print("1")
-
+        print("1")
 
 
 # end
@@ -185,7 +177,6 @@ def subtract(N1, D1, N2, D2):
 while True:
     help()
     # get inputs
-
 
     N1 = int(input("numerator 1 -> "))
     D1 = int(input("denominator 1 -> "))
