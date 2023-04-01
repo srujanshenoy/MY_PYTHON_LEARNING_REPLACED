@@ -1,7 +1,7 @@
 import os
 import openai
 openai.organization = "org-dbTAYmDzpKNWvuR5dgfi6mfL"
-openai.api_key = "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"
+openai.api_key = "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"
 
 def generate_response(prompt):
     completions = openai.Completion.create(
@@ -10,7 +10,7 @@ def generate_response(prompt):
         max_tokens = 1024,
         n = 1,
         stop = None,
-        temperature = 0.5
+        temperature = 0
     )
 
     message = completions.choices[0].text
