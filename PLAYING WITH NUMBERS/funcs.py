@@ -3,7 +3,11 @@ def greet():
 
 
 def calc():
-    pass
+    print("X _ Y = _")
+    num1 = floatinput("X: ")
+    print(f"{num1} _ Y = _")
+    operator = operatorinput()
+    num2 = floatinput("Y: ")
 
 
 def fractioncalc():
@@ -17,19 +21,44 @@ def intinput(prompt: str):
             value = int(value)
             break
         except:
-            print("the value you entered is not an integer. Please enter again.")
+            print("the value You entered is not an integer. Please enter again.")
+
         return value
+
+
+def floatinput(prompt: str):
+    while True:
+        value = input(prompt)
+        try:
+            value = float(value)
+            break
+        except:
+            print("the value You entered is not an integer. Please enter again.")
+        return value
+
+
+def operatorinput():
+    operator = input("operator( + -  * (or) X  / ): ")
+    valid = ['+', '-', '*', '/', 'X']
+    if operator.lower not in valid:
+        print("invalid operator. Re- enter")
+        operatorinput()
+    else:
+        if operator == 'X':
+            return '*'
+        else:
+            return operator
 
 
 def main_function():
     while True:
         val = input("""
-        What do you want to choose?
+        What do You want to choose?
         1. Calculator
         2. Whole numbers, predecessor, successor
         3. hcf / gcd
         
-        Enter the index number into the terminal.
+        Enter the indeX number into the terminal.
         """)
         if val == '1':
             val = input("""
@@ -52,61 +81,61 @@ def main_function():
                 """
             )
             if val == 1:
-                x = intinput("upto x. x is: ")
+                X = intinput("upto X. X is: ")
 
             if val == 2:
-                x = intinput("predecessor of what?")
-                predecessor(x)
+                X = intinput("predecessor of what?")
+                predecessor(X)
 
             if val == 3:
-                x = intinput("Successor of what? :")
+                X = intinput("Successor of what? :")
                 successor
         if val == 3:
-            print("hcf of x, y where x is: ")
-            x = intinput("")
-            print(f"hcf of {x}, where y is:")
-            y = intinput("")
-            hcf_gcd(x, y)
+            print("hcf of X, Y where X is: ")
+            X = intinput("")
+            print(f"hcf of {X}, where Y is:")
+            Y = intinput("")
+            hcf_gcd(X, Y)
 
 
-def wholenos(x):
+def wholenos(X):
     wholes = []
-    for i in range(x):
+    for i in range(X):
         wholes.append(i)
 
     return wholes
 
 
-def successor(x):
-    return x+1
+def successor(X):
+    return X+1
 
 
-def predecessor(x):
-    return x-1
+def predecessor(X):
+    return X-1
 
 
-def add(x, y):
-    return x + y
+def add(X, Y):
+    return X + Y
 
 
-def subtract(x, y):
-    return x - y
+def subtract(X, Y):
+    return X - Y
 
 
-def multiply(x, y):
-    return x * y
+def multiplY(X, Y):
+    return X * Y
 
 
-def divide(x, y):
-    return x / y
+def divide(X, Y):
+    return X / Y
 
 
-def factors(x: int):
-    half_x = int(x / 2)
+def factors(X: int):
+    half_X = int(X / 2)
     facts = []
-    for i in range(half_x):
-        if x % i == 0:
-            facts.append(x)
+    for i in range(half_X):
+        if X % i == 0:
+            facts.append(X)
 
     return facts
 
@@ -117,7 +146,7 @@ def hcf_gcd(a, b):
     return a
 
 
-def simplify(N, D):
+def simplifY(N, D):
     hcf = hcf_gcd(N, D)
     on = N / hcf
     od = D / hcf
@@ -132,22 +161,22 @@ class fractionalmath:
         self.numerator2 = numerator2
         self.denominator2 = denominator2
 
-    def multiply(self):
+    def multiplY(self):
         result = (self.numerator1 * self.numerator2,
                   self.denominator1 * self.denominator2)
-        return simplify(result[0], result[1])
+        return simplifY(result[0], result[1])
 
     def divide(self):
         result = (self.numerator1 * self.denominator2,
                   self.denominator1 * self.numerator2)
-        return simplify(result[0], result[1])
+        return simplifY(result[0], result[1])
 
     def add(self):
         hcf = hcf_gcd(self.denominator1, self.denominator2)
         out_numerator, out_denominator = self.numerator1 * hcf + self.numerator2 * hcf, hcf
-        return simplify(out_numerator, out_denominator)
+        return simplifY(out_numerator, out_denominator)
 
     def subtract(self):
         hcf = hcf_gcd(self.denominator1, self.denominator2)
         out_numerator, out_denominator = self.numerator1 * hcf - self.numerator2 * hcf, hcf
-        return simplify(out_numerator, out_denominator)
+        return simplifY(out_numerator, out_denominator)
