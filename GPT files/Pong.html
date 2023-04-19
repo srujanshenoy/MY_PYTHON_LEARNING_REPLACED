@@ -1,0 +1,147 @@
+<!-- 
+  THIS FILE WAS CREATED WITH ONLY CHAT GPT. I HAVE 0.01% EXPERIANCE WITH JAVASCRIPT(check my github)
+  AND ONLY 50% EXPERIANCE WITH HTML. I AM MOST EXPERIANCED WITH PYTHON. I ONLY PROVIDED GPT PROMPTS.
+-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pong</title>
+	<style>
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="640" height="480"></canvas>
+	<script>
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+
+		var ballX = canvas.width / 2;
+		var ballY = canvas.height / 2;
+		var ballSpeedX = 5;
+		var ballSpeedY = 5;
+		var ballSize = 10;
+
+		var paddleHeight = 100;
+		var paddleWidth = 10;
+		var paddle1Y = canvas.height / 2 - paddleHeight / 2;
+		var paddle2Y = canvas.height / 2 - paddleHeight / 2;
+		var paddleSpeed = 5;
+
+		var player1Score = 0;
+		var player2Score = 0;
+		var winningScore = 3;
+
+		// Calculate mouse position relative to canvas
+		function calculateMousePos(event) {
+			var rect = canvas.getBoundingClientRect();
+			var root = document.documentElement;
+			var mouseX = event.clientX - rect.left - root.scrollLeft;
+			var mouseY = event.clientY - rect.top - root.scrollTop;
+			return {
+				x: mouseX,
+				y: mouseY
+			};
+		}
+
+		// Handle user input
+		canvas.addEventListener("mousemove", function(event) {
+			var mousePos = calculateMousePos(event);
+			paddle1Y = mousePos.y - (paddleHeight / 2);
+		});
+
+		// Draw the game graphics
+		function draw() {
+			// Clear the canvas
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			// Draw the ball
+			ctx.beginPath();
+			ctx.arc(ballX, ballY, ballSize, 0, Math.PI * 2);
+			ctx.fill();
+
+			// Move the ball
+			ballX += ballSpeedX;
+			ballY += ballSpeedY;
+
+			// Bounce the ball off the top and bottom walls
+			if (ballY < ballSize || ballY > canvas.height - ballSize) {
+				ballSpeedY = -ballSpeedY;
+			}
+
+			// Bounce the ball off the paddles
+			if (ballX < paddleWidth + ballSize && ballY > paddle1Y && ballY < paddle1Y + paddleHeight) {
+				ballSpeedX = -ballSpeedX;
+				var deltaY = ballY - (paddle1Y + paddleHeight / 2);
+				ballSpeedY = deltaY * 0.35;
+			} else if (ballX > canvas.width - paddleWidth - ballSize && ballY > paddle2Y && ballY < paddle2Y + paddleHeight) {
+				ballSpeedX = -ballSpeedX;
+				var deltaY = ballY - (paddle2Y + paddleHeight / 2);
+				ballSpeedY = deltaY * 0.35;
+			}
+
+			// Display player 1's paddle
+			ctx.fillRect(0, paddle1Y, paddleWidth, paddleHeight);
+
+			// Display player 2's paddle
+			ctx.fillRect(canvas.width - paddleWidth, paddle2Y, paddleWidth, paddleHeight);
+
+			// Display player 1's score
+			ctx.fillText(player1Score, canvas.width / 2 - 60, 50);
+      		// Display player 2's score
+		ctx.fillText(player2Score, canvas.width - 30, 50);
+
+// Update the paddles' positions
+if (paddle1Y < ballY - paddleHeight / 2) {
+  paddle1Y += paddleSpeed;
+} else if (paddle1Y > ballY - paddleHeight / 2) {
+  paddle1Y -= paddleSpeed;
+}
+
+if (paddle2Y < ballY - paddleHeight / 2) {
+  paddle2Y += paddleSpeed;
+} else if (paddle2Y > ballY - paddleHeight / 2) {
+  paddle2Y -= paddleSpeed;
+}
+
+// Check for a point scored
+if (ballX < 0) {
+  player2Score++;
+  resetBall();
+} else if (ballX > canvas.width) {
+  player1Score++;
+  resetBall();
+}
+
+// Check for a winner
+if (player1Score >= winningScore) {
+  alert("Player 1 wins!");
+  resetGame();
+} else if (player2Score >= winningScore) {
+  alert("Player 2 wins!");
+  resetGame();
+}
+}
+
+// Reset the ball to the center of the screen
+function resetBall() {
+ballX = canvas.width / 2;
+ballY = canvas.height / 2;
+ballSpeedX = -ballSpeedX;
+}
+
+// Reset the game to the starting state
+function resetGame() {
+player1Score = 0;
+player2Score = 0;
+resetBall();
+}
+
+// Start the game loop
+setInterval(draw, 1000 / 60);
+</script>
+
