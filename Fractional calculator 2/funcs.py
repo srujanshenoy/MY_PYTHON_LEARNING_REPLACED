@@ -1,19 +1,46 @@
 """
-Module for all functions used in the main.pY file.
+Module for all functions used in the main.py file.
 """
 
 
-def hcf(a, b):
-    "Returns the HCF or GCD of any two integers."
-    if b == 0:
-        return abs(a)
-    else:
-        return hcf(b, a % b)
+def lcm(a, b):
+    """Returns the least common multiple (LCM) of two numbers."""
+    # Find the maximum of the two numbers
+    max_num = max(a, b)
 
+    # Keep incrementing the maximum number to find the LCM
+    while True:
+        if max_num % a == 0 and max_num % b == 0:
+            return max_num
+        max_num += 1
+
+def int_prompt(prompt: str):
+    """asks for user input and checks to see if it is an integer."""
+
+    while True:
+        usr_in = input(prompt)
+        try:
+            usr_in = int(usr_in)
+            break
+        except:
+            pass
+    return usr_in
+
+def operator_prompt():
+    """ Asks for user input and checks to see if it is an operator """
+    valid = ["+", "-", "x", "/"]
+    while True:
+        usr_in = input("operator (+, -, x, /): ")
+        if usr_in.lower() in valid:
+            break
+        else:
+            pass
+
+    return usr_in.lower()
 
 class Fraction:
     """
-    A class made for fractions and spesifically the objects. Operations are
+    A class made for fractions and specifically the objects. Operations are
     written in class FractionOperations
     """
 
@@ -22,10 +49,17 @@ class Fraction:
         self.denominator = denominator
 
     def simplify(self):
-        "Simplifies any fraction into simplest form"
-        hcf_is = hcf(self.numerator, self.denominator)
+        """Simplifies any fraction into the simplest form"""
+
+        hcf_is = lcm(self.numerator, self.denominator)
+        # if self.denominator / hcf_is == 1:
+        #     return self.numerator
+        # else:
+        #     return Fraction(self.numerator / hcf_is, self.denominator / hcf_is)
         return Fraction(self.numerator / hcf_is, self.denominator / hcf_is)
 
+    def print_fraction(self):
+        print(f"{int(self.numerator)} / {int(self.denominator)}")
 
 class FractionOperations:
     """
@@ -51,7 +85,7 @@ class FractionOperations:
 
     def divide(self):
         """
-        Returns a Fraction that is the qutient of two fractions
+        Returns a Fraction that is the quotient of two fractions
         N1 * D2 / D1 * N2
         """
         return Fraction.simplify(
@@ -62,19 +96,22 @@ class FractionOperations:
         )
 
     def add(self):
-        "Adds any two given fractions."
-        hcf_denominators = hcf(self.fraction_1.denominator, self.fraction_2.denominator)
-        # adjust numerators to equalize denominators
-        numerator_1 = self.fraction_1.numerator * hcf_denominators
-        numerator_2 = self.fraction_2.numerator * hcf_denominators
-
-        return Fraction.simplify(Fraction(numerator_1 + numerator_2, hcf_denominators))
+        """ Adds any two fractions. """
+        lcm_denominators = lcm(self.fraction_1.denominator, self.fraction_2.denominator)
+        multiplication_coefficient_1 = lcm_denominators / self.fraction_1.denominator
+        multiplication_coefficient_2 = lcm_denominators / self.fraction_2.denominator
+        additive_numerator_1 = self.fraction_1.numerator * multiplication_coefficient_1
+        additive_numerator_2 = self.fraction_2.numerator * multiplication_coefficient_2
+        return Fraction.simplify(Fraction(additive_numerator_1 + additive_numerator_2, lcm_denominators))
 
     def subtract(self):
-        "Subtracts any two given fractions."
-        hcf_denominators = hcf(self.fraction_1.denominator, self.fraction_2.denominator)
-        # adjust numerators to equalize denominators
-        numerator_1 = self.fraction_1.numerator * hcf_denominators
-        numerator_2 = self.fraction_2.numerator * hcf_denominators
+        """Subtracts any two given fractions."""
+        lcm_denominators = lcm(self.fraction_1.denominator, self.fraction_2.denominator)
+        multiplication_coefficient_1 = lcm_denominators / self.fraction_1.denominator
+        multiplication_coefficient_2 = lcm_denominators / self.fraction_2.denominator
+        subtractive_numerator_1 = self.fraction_1.numerator * multiplication_coefficient_1
+        subtractive_numerator_2 = self.fraction_2.numerator * multiplication_coefficient_2
+        return Fraction.simplify(Fraction(subtractive_numerator_1 - subtractive_numerator_2, lcm_denominators))
 
-        return Fraction.simplify(Fraction(numerator_1 - numerator_2, hcf_denominators))
+
+
