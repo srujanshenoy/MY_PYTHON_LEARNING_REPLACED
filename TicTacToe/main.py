@@ -1,38 +1,61 @@
 # Variables
-Game_Board = [""] * 9
+Game_Board = [""] * 10
 
 
 # Functions
-def print_board(Game_Board):
+def print_board(Board):
     print(
         f"""
-    {Game_Board[7]} | {Game_Board[8]} | {Game_Board[9]} 
-    {Game_Board[4]} | {Game_Board[5]} | {Game_Board[6]} 
-    {Game_Board[1]} | {Game_Board[2]} | {Game_Board[3]}  
+    {Board[7]} | {Board[8]} | {Board[9]} 
+    {Board[4]} | {Board[5]} | {Board[6]} 
+    {Board[1]} | {Board[2]} | {Board[3]}  
     """
     )
 
 
-def check_win(marker, Game_Board):
+def check_win(marker, Board):
     return (
         # Columns
         (
-            (Game_Board[1] == Game_Board[4] == Game_Board[7] == marker)
-            or (Game_Board[2] == Game_Board[5] == Game_Board[8] == marker)
-            or (Game_Board[3] == Game_Board[6] == Game_Board[9] == marker)
+            (Board[1] == Board[4] == Board[7] == marker)
+            or (Board[2] == Board[5] == Board[8] == marker)
+            or (Board[3] == Board[6] == Board[9] == marker)
         )
         # Rows
         (
-            (Game_Board[1] == Game_Board[2] == Game_Board[3] == marker)
-            or (Game_Board[4] == Game_Board[5] == Game_Board[6] == marker)
-            or (Game_Board[9] == Game_Board[8] == Game_Board[7] == marker)
+            (Board[1] == Board[2] == Board[3] == marker)
+            or (Board[4] == Board[5] == Board[6] == marker)
+            or (Board[9] == Board[8] == Board[7] == marker)
         )
         # Diagonals
         (
-            (Game_Board[1] == Game_Board[5] == Game_Board[9])
-            or (Game_Board[3] == Game_Board[5] == Game_Board[7])
+            (Board[1] == Board[5] == Board[9])
+            or (Board[3] == Board[5] == Board[7])
         )
     )
 
+def usr_in_request():
+
+    while True:
+        print('\n' * 100)
+        print_board(Game_Board)
+        try:
+            usr_in = int(input("Where do you want to play? (0 - 9): "))
+        except:
+            usr_in_request()
+
+        # Validate input
+        if usr_in >= 10:
+            pass
+        elif usr_in == 0:
+            pass
+        elif usr_in < 10 and usr_in != 0:
+            break
+
+    return usr_in
+
+def place_usr_in(position, board):
+    pass
 
 # game loop
+usr_in_request()
