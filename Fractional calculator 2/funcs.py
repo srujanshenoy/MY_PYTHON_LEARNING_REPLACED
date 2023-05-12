@@ -2,6 +2,11 @@
 Module for all functions used in the main.py file.
 """
 
+def gcd(a, b):
+    """Returns the greatest common divisor (GCD) of two numbers."""
+    while b:
+        a, b = b, a % b
+    return a
 
 def lcm(a, b):
     """Returns the least common multiple (LCM) of two numbers."""
@@ -51,7 +56,7 @@ class Fraction:
     def simplify(self):
         """Simplifies any fraction into the simplest form"""
 
-        hcf_is = lcm(self.numerator, self.denominator)
+        hcf_is = gcd(self.numerator, self.denominator)
         # if self.denominator / hcf_is == 1:
         #     return self.numerator
         # else:
