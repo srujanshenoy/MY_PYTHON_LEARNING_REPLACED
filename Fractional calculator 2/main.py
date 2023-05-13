@@ -1,8 +1,8 @@
 from funcs import *
 
-quit = True
+quit_program = True
 
-while quit:
+while quit_program:
     fraction_1 = Fraction(int_prompt("Numerator 1: "), int_prompt("Denominator 1: "))
     operator = operator_prompt()
     fraction_2 = Fraction(int_prompt("Numerator 2: "), int_prompt("Denominator 2: "))
@@ -20,9 +20,9 @@ while quit:
     else:
         print('somthing went wrong...')
 
-    quit = input("Do you want to quit? Y / N: ")
-    if quit.lower() == 'y':
-        quit = False
-    elif quit.lower() == 'n':
-        quit = True
+    quit_program = input("Do you want to quit_program? Y / N: ")
+    if quit_program.lower() == 'y':
+        quit_program = False
+    elif quit_program.lower() == 'n':
+        quit_program = True
 

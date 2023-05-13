@@ -27,8 +27,9 @@ def int_prompt(prompt: str):
         try:
             usr_in = int(usr_in)
             break
-        except:
+        except TypeError:
             pass
+
     return usr_in
 
 def operator_prompt():
