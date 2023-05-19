@@ -1,4 +1,4 @@
-""" Improved version of e62tended guess ur number """
+""" Improved version of extended guess ur number """
 
 print("think of a number from 0 - 63\n"
       "If tour number is in a slide, than enter Y for Yes\n"
