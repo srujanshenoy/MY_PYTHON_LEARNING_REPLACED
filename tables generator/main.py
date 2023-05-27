@@ -5,8 +5,8 @@ from tkinter import ttk
 
 from_value = int_input("from tables: ")
 to_value = int_input("to tables: ")
-tables_table = prettytable.PrettyTable()
-
+tables_table = prettytable.PrettyTable(border=True, border_width='2')
+tables_table.border_style = 'outset'
 
 for table in range(from_value, to_value):
     append_list = []
