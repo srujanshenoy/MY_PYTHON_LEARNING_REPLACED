@@ -1,10 +1,10 @@
-import prettytable
+from tabulate import tabulate
 
-table = prettytable.PrettyTable(border=True, border_width=100)
-table.border_style = 'outset'
+data = [["name", "age", "height", "weight", "Job"],
+        ["John", 30, 1.75, "65kg", "Engineer"],
+        ["Jane", 25, 1.75, "65kg", "Doctor"],
+        ["Mary", 25, 1.75, "65kg", "Engineer"],
+        ["Peter", 30, 1.75, "65kg", "Programmer"]
+        ]
 
-table.add_row(["Name", "Age"])
-table.add_row(["John Doe", 30])
-table.add_row(["Jane Doe", 25])
-
-print(table)
+print(tabulate(data, headers="firstrow", showindex='always', tablefmt="fancy_grid"))
