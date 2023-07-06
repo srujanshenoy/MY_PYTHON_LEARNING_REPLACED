@@ -24,8 +24,8 @@ Jokes = {
         "you? Say, \"Open OneNote\" to jot, it down.",
     17: "What do you do when you see a spaceman? Park in it, man!",
     18: ("William Shakespeare owned a pencil that he chewed on so much, we don’t know if it’s 2B or not 2B. Want to \n"
-         "protect your pencils? Say, “Start an email.”")
-    19: 'Why did the hipster burn his mouth on his coffee? Because he drank it before it was cool.'
+         "protect your pencils? Say, “Start an email.”"),
+    19: 'Why did the hipster burn his mouth on his coffee? Because he drank it before it was cool.',
     20: 'A ham sandwich walks into a bar and the bartender says, "Sorry, we don\'t serve food in here."'
 }
 
