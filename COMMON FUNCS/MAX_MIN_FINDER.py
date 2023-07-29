@@ -12,4 +12,3 @@ def find_lowest(numbers):
         if number < lowest:
             lowest = number
     return lowest
-

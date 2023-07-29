@@ -17,8 +17,7 @@ def float_input(prompt: str):
     while True:
         usr_in = input(prompt + " ")
         try:
-            float(usr_in)
-            break
+            return float(usr_in)
 
         except ValueError:
             print("NaN error")
