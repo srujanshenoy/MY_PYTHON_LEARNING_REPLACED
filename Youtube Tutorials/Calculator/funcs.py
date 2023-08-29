@@ -36,5 +36,5 @@ def operator_input():
     while usr_in.lower() not in ["+", "-", "*", "/", "x", "X", ".", "^"]:
         usr_in = input("Operator [+ / - / x / ^ / /]: ")
 
-    output = usr_in if usr_in in ['+', '-', '/'] else 'x'
+    output = usr_in if usr_in in ['+', '-', '/', '^'] else 'x'
     return output
