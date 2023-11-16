@@ -1,0 +1,11 @@
+How to command line commit to a git repo:- 
+
+   Step										| How to
+1. Open command prompt 						| Win+R, cmd, enter
+2. Go to your directory						| cd "(your path here)"
+3. Initialze Github							| git init
+4. Add all files							| git add .
+5. Commit									| git commit -m "(Commit message)"
+6. Push										| git push
+
+You wikl have commited your files
