@@ -6,7 +6,7 @@ def print_table(data):
 
 
 def print_table_with_headers(data):
-    print(tabulate(data, headers='keys', tablefmt='fancy_grid', showindex='always'))
+    print(tabulate(data, headers='keys', tablefmt='fancy_grid', showindex='never'))
     # print_table(data, headers='keys', tablefmt='fancy_grid', showindex='always')
 
 

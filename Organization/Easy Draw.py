@@ -1,6 +1,6 @@
 import turtle
 
-pen = turtle()
+pen = turtle.Turtle()
 
 print("""
 
