@@ -9,7 +9,7 @@ while quit_program:
     fraction_pair = FractionOperations(fraction_1, fraction_2)
 
 
-    if operator == '+':
+    if   operator == '+':
         Fraction.print_fraction(FractionOperations.add(fraction_pair))
     elif operator == '-':
         Fraction.print_fraction(FractionOperations.subtract(fraction_pair))

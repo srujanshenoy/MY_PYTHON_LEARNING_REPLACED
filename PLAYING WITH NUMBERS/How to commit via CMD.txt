@@ -8,4 +8,4 @@ How to command line commit to a git repo:-
 5. Commit									| git commit -m "(Commit message)"
 6. Push										| git push
 
-You wikl have commited your files
+You will have commited your files
