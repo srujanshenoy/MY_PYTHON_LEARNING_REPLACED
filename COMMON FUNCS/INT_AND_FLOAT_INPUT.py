@@ -4,8 +4,7 @@ def intinput(prompt: str):
     while True:
         usr_in = input(prompt + " ")
         try:
-            int(usr_in)
-            break
+            return int(usr_in)
 
         except ValueError:
             print("NaN error")
