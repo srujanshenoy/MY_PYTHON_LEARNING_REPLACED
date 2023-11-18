@@ -1,7 +1,8 @@
 def sqrt(x):
 	return x ** 0.5
 
-def check_prime(number: int):
+def check_prime(number: int): -> bool
+	"""Checks if a number is prime. Returns Bool"""
     if number < 2:
         return False
 
@@ -12,7 +13,7 @@ def check_prime(number: int):
     return True
 
 
-def int_input(prompt: str):
+def int_input(prompt: str): -> int
     usr_in = "wrong"
 
     while True:

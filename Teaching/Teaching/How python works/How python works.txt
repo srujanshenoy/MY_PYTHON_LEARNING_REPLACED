@@ -1,0 +1,5 @@
+How python works:
+
+Python uses a line-by-line method of interpreting code. This is done by an interpreter. Code on line 1
+would be executed before that of line 2. This is how python generally works.
+

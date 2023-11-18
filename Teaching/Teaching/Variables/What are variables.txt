@@ -1,0 +1,17 @@
+What are variables?
+
+Think of variables like boxes. The label of the box is the variable nam and the content inside the box would be the thing linked to that name. For example,
+
+		|------|
+Box X = |   1  |
+		|------|
+
+Think of it like the above box. Box X is the label of the box contaning the number 1.
+
+In python code, the above diagram would be represented with:-
+
+X = 1
+
+This code if it was run would store the number 1 in the variable X
+
+There are diffrent types of variables. Let us learn about them.
