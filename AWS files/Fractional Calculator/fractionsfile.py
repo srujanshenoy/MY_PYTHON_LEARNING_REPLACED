@@ -1,30 +1,4 @@
-# A function to take the lcm of two numbers.
-
-def lcm(x, y):
-    if x > y:
-        greater = x
-    else:
-        greater = y
-
-    while(True):
-        if((greater % x == 0) and (greater % y == 0)):
-            lcm = greater
-            break
-        greater += 1
-
-    return lcm
-
-# a function to take the GCD of two numbers.
-
-def gcd(x, y):
-    if x > y:
-        smaller = y
-    else:
-        smaller = x
-    for i in range(1, smaller+1):
-        if((x % i == 0) and (y % i == 0)):
-            gcd = i
-    return gcd
+import math
 
 def int_input(prompt):
     while True:
@@ -32,50 +6,74 @@ def int_input(prompt):
             return int(input(prompt))
         except ValueError:
             print("Invalid input. Please enter a valid integer.")
-            continue
-
+            
+            
 def operator_input(prompt):
     while True:
         operator = input(prompt)
-        if operator in ["+", "-", "*", "/"]:
+        if operator in ['+', '-', '*', '/']:
             return operator
         else:
-            print("Invalid input. Please enter a valid operator.")
-            continue
-
+            print("Invalid operator. Please enter a valid operator.")
+            
+def continue_game():
+    while True:
+        choice = input("Do you want to continue? Enter y for yes and anything else for no. ")
+        if choice.lower() == 'y': return True
+        return False
+            
 class Fraction:
     def __init__(self, numerator, denominator):
         self.numerator = numerator
         self.denominator = denominator
-
+        
+    def __str__(self):
+        return f"{self.numerator}/{self.denominator}"
+    
     def simplify(self):
-        hcf_is = gcd(self.numerator, self.denominator)
-        self.numerator = self.numerator / hcf_is
-        self.denominator = self.denominator / hcf_is
-        return self
-
+        gcd = math.gcd(self.numerator, self.denominator)
+        self.numerator //= gcd
+        self.denominator //= gcd
+        
+    def convert_to_mixed_fraction(self):
         whole_number = self.numerator // self.denominator
-        self.numerator = self.numerator % self.denominator
-        return whole_number, self.numerator, self.denominator
-
+        remainder = self.numerator % self.denominator
+        return f"{whole_number} {remainder}/{self.denominator}"
+    
+        
+        
 class Fractions:
-    def __init__(self, fraction_1, fraction_2):
-        self.fraction_1 = fraction_1
-        self.fraction_2 = fraction_2
-
-    def multiply(self):
-        output = Fraction(self.fraction_1.numerator * self.fraction_2.numerator, self.fraction_1.denominator * self.fraction_2.denominator)
-        return output
-
-    def divide(self):
-        output = Fraction(self.fraction_1.numerator * self.fraction_2.denominator, self.fraction_1.denominator * self.fraction_2.numerator)
-        return output
+    def __init__(self, Fraction1: Fraction, Fraction2: Fraction):
+        self.Fraction1 = Fraction1
+        self.Fraction2 = Fraction2
 
     def add(self):
-        output = Fraction.simplify(Fraction(self.fraction_1.numerator * self.fraction_2.denominator + self.fraction_2.numerator * self.fraction_1.denominator, self.fraction_1.denominator * self.fraction_2.denominator))
-        return output
-
+        numerator = self.Fraction1.numerator * self.Fraction2.denominator + self.Fraction2.numerator * self.Fraction1.denominator
+        denominator = self.Fraction1.denominator * self.Fraction2.denominator
+        result = Fraction(numerator, denominator)
+        result.simplify()
+        return result
+    
+    
     def subtract(self):
-        output = Fraction.simplify(Fraction(self.fraction_1.numerator * self.fraction_2.denominator - self.fraction_2.numerator * self.fraction_1.denominator, self.fraction_1.denominator * self.fraction_2.denominator))
-        return output
-
+        numerator = self.Fraction1.numerator * self.Fraction2.denominator - self.Fraction2.numerator * self.Fraction1.denominator
+        denominator = self.Fraction1.denominator * self.Fraction2.denominator
+        result = Fraction(numerator, denominator)
+        result.simplify()
+        return result
+    
+    
+    def multiply(self):
+        numerator = self.Fraction1.numerator * self.Fraction2.numerator
+        denominator = self.Fraction1.denominator * self.Fraction2.denominator
+        result = Fraction(numerator, denominator)
+        result.simplify()
+        return result
+    
+    
+    def divide(self):
+        numerator = self.Fraction1.numerator * self.Fraction2.denominator
+        denominator = self.Fraction1.denominator * self.Fraction2.numerator
+        result = Fraction(numerator, denominator)
+        result.simplify()
+        return result
