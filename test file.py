@@ -1,15 +1,6 @@
-import winsound
-import time as t
+from comfuncs import Fractions
 
-fixed_time = 10
-duration = fixed_time
+fraction_1 = Fractions(1, 2)
+fraction_2 = Fractions(3, 4)
 
-while duration > 0:
-    if duration == fixed_time: print(f"STARTED timer for {fixed_time} SECONDS")
-    if duration == fixed_time/2: print(f"HALFWAY THERE {fixed_time / 2}")
-    if duration == 1: print("DONE")  
-
-    t.sleep(1)
-    duration -= 1
-
-winsound.MessageBeep()
+print(fraction_1 + fraction_2)

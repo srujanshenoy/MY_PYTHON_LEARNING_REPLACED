@@ -1,25 +1,26 @@
-import turtle
+import turtle as t
+import time as ti
 
-# Set up the turtle screen
-turtle.bgcolor('black')
-turtle.pencolor('white')
-turtle.speed(0)
-turtle.up()
-turtle.bk(600)
-turtle.lt(90)
-turtle.down()
+current_time = 10  # set this to the value in seconds
 
-# Draw the outer shape
-turtle.fillcolor('white')
-turtle.begin_fill()
-turtle.fd(200)
-turtle.rt(90)
-turtle.fd(120)
-# ... (more turtle commands for drawing the outer shape)
 
-# Draw the inner details
-# ... (more turtle commands for drawing the inner details)
+def display_time(time):
+    t.penup()
+    t.clear()
+    t.write(time, font=("Arial", 50, "normal"))
 
-# Hide the turtle cursor
-turtle.ht()
-turtle.done()
+
+def timer(seconds):
+    while seconds:
+        minutes, secs = divmod(seconds, 60)
+        time_format = '{:02d}:{:02d}'.format(minutes, secs)
+        display_time(time_format)
+        ti.sleep(1)
+        seconds -= 1
+
+    t.clear()
+    t.write("Time's up!", font=("Arial", 50, "normal"))
+    ti.sleep(5)
+
+
+timer(current_time)
