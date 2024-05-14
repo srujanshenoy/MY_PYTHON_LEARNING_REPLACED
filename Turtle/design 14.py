@@ -1,11 +1,10 @@
 import turtle as t
 import colorsys as cs
-import time as ti
 
 t.setup(300,300)
 t.speed(-100000000000)
-t.tracer(5)
-t.width(27)
+t.tracer(1000)
+t.width(30)
 t.bgcolor("black")
 
 for j in range(26):
@@ -18,6 +17,5 @@ for j in range(26):
         t.right(180)
         t.circle(50, 24)
 
-ti.sleep(10)
-t.done()
+t.exitonclick()
 

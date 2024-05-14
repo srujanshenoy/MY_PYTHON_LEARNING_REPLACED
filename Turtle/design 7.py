@@ -1,7 +1,7 @@
 import turtle as t
 import colorsys
 t.bgcolor("black")
-t.pensize(3)
+t.pensize(100)
 t.tracer(1)
 t.speed(0)
 h = 0
