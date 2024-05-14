@@ -7,12 +7,15 @@ class TicTacToe:
         self.window = tk.Tk()
         self.window.title("Tic Tac Toe")
 
-        self.canvas = Canvas(self.window, width=300, height=300)
+        self.canvas = Canvas(self.window, width=300, height=350)  # Increased height for score
         self.canvas.pack()
 
         self.buttons = [[0 for _ in range(3)] for _ in range(3)]
         self.current_player = "X"
+        self.player_score = 0
+        self.ai_score = 0
         self.create_board()
+        self.create_scoreboard()  # Create the scoreboard
 
     def create_board(self):
         for i in range(3):
@@ -22,11 +25,9 @@ class TicTacToe:
                 x2 = x1 + 100
                 y2 = y1 + 100
 
-                # First create the rounded rectangles
                 self.canvas.create_rectangle(x1, y1, x2, y2, width=2, outline="black", tags=f"button_{i}_{j}")
                 self.round_rectangle(x1, y1, x2, y2, radius=10, tags=f"button_{i}_{j}")
 
-                # Then create the buttons on top
                 button = tk.Button(self.canvas, text="", font=("Arial", 40), width=3, height=1,
                                    command=lambda row=i, col=j: self.handle_click(row, col),
                                    relief="flat", bd=0)
@@ -47,6 +48,11 @@ class TicTacToe:
                   x1, y1 + radius,
                   x1, y1]
         return self.canvas.create_polygon(points, **kwargs, smooth=True)
+
+    def create_scoreboard(self):
+        self.score_label = tk.Label(self.canvas, text=f"\nPlayer: {self.player_score}  |  AI: {self.ai_score}",
+                                   font=("Arial", 16))
+        self.canvas.create_window(150, 325, window=self.score_label)
 
     def handle_click(self, row, col):
         if self.buttons[row][col]["text"] == "" and self.current_player == "X":
@@ -87,6 +93,11 @@ class TicTacToe:
 
     def announce_winner(self):
         messagebox.showinfo("Winner", f"{self.current_player} wins!")
+        if self.current_player == "X":
+            self.player_score += 1
+        else:
+            self.ai_score += 1
+        self.update_scoreboard()  # Update the scoreboard
         self.ask_for_restart()
 
     def announce_tie(self):
@@ -97,10 +108,8 @@ class TicTacToe:
         restart = messagebox.askquestion("Play Again?", "Do you want to play again?")
         if restart == "yes":
             self.reset_game()
-        else:  # Close the window if 'no' is clicked
+        else:
             self.window.destroy()
-
-
 
     def switch_player(self):
         self.current_player = "O" if self.current_player == "X" else "X"
@@ -108,10 +117,9 @@ class TicTacToe:
     def reset_game(self):
         for i in range(3):
             for j in range(3):
-                # Call config method to change text
                 self.buttons[i][j].config(text="")
         self.current_player = "X"
-        self.start()  # Restart the game loop 
+        self.start()
 
     def ai_move(self):
         best_score = float('-inf')
@@ -121,7 +129,7 @@ class TicTacToe:
                 if self.buttons[i][j]["text"] == "":
                     self.buttons[i][j]["text"] = "O"  # Try the move
                     score = self.minimax(0, False)  # Evaluate the move
-                    self.buttons[i][j]["text"] = ""   # Undo the move
+                    self.buttons[i][j]["text"] = ""  # Undo the move
                     if score > best_score:
                         best_score = score
                         best_move = (i, j)
@@ -179,6 +187,9 @@ class TicTacToe:
                 if self.buttons[i][j]["text"] == "":
                     return False
         return True
+
+    def update_scoreboard(self):
+        self.score_label.config(text=f"\nPlayer: {self.player_score} | AI: {self.ai_score}")
 
     def start(self):
         self.window.mainloop()
