@@ -1,6 +1,6 @@
-from comfuncs import Fractions
+i = 0
 
-fraction_1 = Fractions(1, 2)
-fraction_2 = Fractions(3, 4)
+while i < 100000:
+    # print(i)
+    i += 1
 
-print(fraction_1 + fraction_2)
