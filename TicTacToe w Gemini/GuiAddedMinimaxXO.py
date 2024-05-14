@@ -111,7 +111,7 @@ class TicTacToe:
                 # Call config method to change text
                 self.buttons[i][j].config(text="")
         self.current_player = "X"
-        self.start()  # Restart the game loop
+        self.start()  # Restart the game loop 
 
     def ai_move(self):
         best_score = float('-inf')
