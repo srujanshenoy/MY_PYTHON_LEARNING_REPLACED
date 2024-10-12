@@ -1,11 +1,9 @@
 def sqrt(x):
 	return x ** 0.5
 
-def check_prime(number: int): -> bool
+def check_prime(number: int) -> bool:
 	"""Checks if a number is prime. Returns Bool"""
-    if number < 2:
-        return False
-
+    if number < 2: return False
     for i in range(2, int(sqrt(number)) + 1):
         if number % i == 0:
             return False
