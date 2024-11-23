@@ -10,7 +10,7 @@ def float_input(prompt):
     while True:
         try:
             usr_in = input(prompt)
-            if usr_in == "//"
+            if usr_in == "//":
                 return "Break"
             else:
                 return float(usr_in)
@@ -28,7 +28,7 @@ def operator_input(prompt):
 
 def continue_q(): return not input("Do you want to continue? (_ for yes and anything else for no.)")
 
-def Calc(starting:bool, current_value):
+def calc(starting:bool, current_value):
     continue_var = True
     while continue_var:
         print(f"Current value: {current_value}")
@@ -51,6 +51,6 @@ def Calc(starting:bool, current_value):
 
         continue_var = continue_q()
         if continue_var:
-            Calc(False, current_value)
+            calc(False, current_value)
 
-Calc(True, 0)
+calc(True, 0)
